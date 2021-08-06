@@ -1,6 +1,4 @@
 steps:
-  - command: "pwd && ls"
-  - wait
   - commands: 
     - "echo 'Hello World'"
     - "docker build . -t test-image"
@@ -12,4 +10,6 @@ steps:
         volumes:
             - "/var/run/docker.sock:/var/run/docker.sock"
     label: "test"
+  - wait
+  - command: ./generate-pipelines.sh
 
