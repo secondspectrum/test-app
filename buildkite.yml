@@ -1,0 +1,15 @@
+steps:
+  - commands: 
+    - "echo 'Hello World'"
+    - "docker build . -t test-image"
+    - "docker run test-image"
+    plugins: 
+    - docker#v3.8.0:
+        image: "676020893150.dkr.ecr.us-east-1.amazonaws.com/docker"
+        always-pull: true
+        volumes:
+            - "/var/run/docker.sock:/var/run/docker.sock"
+    label: "test"
+  - wait
+  - command: ./generate-pipelines.sh
+
